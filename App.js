@@ -16,7 +16,14 @@ export default class App extends React.Component {
   }
 
   handlePress() {
-    console.warn('PRESSED');
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyCB8uBv6Wn76vcukvY_S2vOzvdGuw92JvM`, { method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log(data.results))
+      .catch(err => console.error(err));
   }
 
   watchID: ?number = null;

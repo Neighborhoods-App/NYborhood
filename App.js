@@ -5,59 +5,14 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import { Main } from './src/components/Main';
 
 export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      longitude: 'unknown',
-      latitude: 'unknown',
-    };
-  }
-
-  handlePress() {
-    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyCB8uBv6Wn76vcukvY_S2vOzvdGuw92JvM`, { method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data.results))
-      .catch(err => console.error(err));
-  }
-
-  watchID: ?number = null;
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var initialPosition = JSON.stringify(position);
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.setState({longitude: position.coords.longitude, latitude: position.coords.latitude});
-      console.warn(this.state.longitude, this.state.latitude);
-    });
-  }
-
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
-  }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.handlePress.bind(this)} style={styles.loginButton}>
-          <Text style={styles.buttonText}>Find Your Neighborhood</Text>
-        </TouchableHighlight>
-          <View>
-           <Text>
-             <Text style={styles.title}>Current position: </Text>
-             {this.state.lastPosition}
-           </Text>
-         </View>
+        <Main />
       </View>
     );
   }
@@ -66,20 +21,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  loginButton: {
-    justifyContent: 'center',
+    backgroundColor: '#fff',
     alignItems: 'center',
-    backgroundColor: 'black',
-    borderRadius: 20,
-    width: 300,
-    height: 70
+    justifyContent: 'center',
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold'
-  }
-})
+});

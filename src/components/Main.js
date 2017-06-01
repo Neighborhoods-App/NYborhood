@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { Locator } from './Locator';
 import { Neighborhood } from './Neighborhood';
 
@@ -52,10 +53,10 @@ export class Main extends React.Component {
 
   render() {
     return (
-      <View>
-        <Locator handlePress={this.handlePress.bind(this)} currentNeighborhood={this.state.currentNeighborhood}/>
-        <Neighborhood currentNeighborhood={this.state.currentNeighborhood}/>
-      </View>
+      <ScrollableTabView>
+        <Locator tabLabel="Locator" handlePress={this.handlePress.bind(this)} currentNeighborhood={this.state.currentNeighborhood}/>
+        <Neighborhood tabLabel="Neighborhood" currentNeighborhood={this.state.currentNeighborhood}/>
+      </ScrollableTabView>
     );
   }
 }

@@ -27,7 +27,7 @@ export class Main extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({currentNeighborhood: data.results[0].address_components[2].long_name}))
+      .then(data => this.setState({currentNeighborhood: data.results[1].address_components[1].long_name}))
       .catch(err => console.error(err));
   }
 

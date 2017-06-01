@@ -16,7 +16,6 @@ export class Locator extends React.Component {
       <TouchableHighlight onPress={this.props.handlePress} style={styles.loginButton}>
         <Text style={styles.buttonText}>Find Your Neighborhood</Text>
       </TouchableHighlight>
-      <Text>{this.props.currentNeighborhood}</Text>
     </View>
     );
   }

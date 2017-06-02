@@ -12,13 +12,20 @@ export class Neighborhood extends React.Component {
   }
   render() {
     return (
-      <View>
-        <Text>{this.props.currentNeighborhood}</Text>
+      <View style={styles.container}>
+        <Text style={styles.neighborhoodText}>{this.props.currentNeighborhood}</Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  neighborhoodText: {
+    fontSize: 24
+  }
 });

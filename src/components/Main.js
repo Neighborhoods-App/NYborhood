@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 import { Locator } from './Locator';
 import { Neighborhood } from './Neighborhood';
 
@@ -28,7 +28,16 @@ export class Main extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({currentNeighborhood: data.results[1].address_components[1].long_name}))
+      .then((data) => {
+        data.results[0].address_components.forEach((element) =>{
+          if(element.types[0] === 'neighborhood'){
+            this.setState({currentNeighborhood: element.long_name})
+          }
+        })
+      })
+      .then(() => {
+        this.tabView.goToPage(1);
+      })
       .catch(err => console.error(err));
   }
 
@@ -53,7 +62,13 @@ export class Main extends React.Component {
 
   render() {
     return (
-      <ScrollableTabView>
+      <ScrollableTabView
+        tabBarBackgroundColor='blue'
+        tabBarActiveTextColor='yellow'
+        tabBarInactiveTextColor='white'
+        tabBarPosition='bottom'
+        ref={(tabView) => { this.tabView = tabView; }}
+      >
         <Locator tabLabel="Locator" handlePress={this.handlePress.bind(this)} currentNeighborhood={this.state.currentNeighborhood}/>
         <Neighborhood tabLabel="Neighborhood" currentNeighborhood={this.state.currentNeighborhood}/>
       </ScrollableTabView>

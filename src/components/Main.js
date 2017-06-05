@@ -8,6 +8,8 @@ import {
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 import { Locator } from './Locator';
 import { Neighborhood } from './Neighborhood';
+import { Play } from './Play';
+import { Eat } from './Eat';
 
 
 
@@ -70,7 +72,10 @@ export class Main extends React.Component {
         ref={(tabView) => { this.tabView = tabView; }}
       >
         <Locator tabLabel="Locator" handlePress={this.handlePress.bind(this)} currentNeighborhood={this.state.currentNeighborhood}/>
-        <Neighborhood tabLabel="Neighborhood" currentNeighborhood={this.state.currentNeighborhood}/>
+        <Neighborhood tabLabel="Hood" currentNeighborhood={this.state.currentNeighborhood}/>
+        <Play tabLabel="Play" currentNeighborhood={this.state.currentNeighborhood}/>
+        <Eat tabLabel="Eat" currentNeighborhood={this.state.currentNeighborhood}/>
+
       </ScrollableTabView>
     );
   }

@@ -10,6 +10,7 @@ import { Locator } from './Locator';
 import { Neighborhood } from './Neighborhood';
 import { Play } from './Play';
 import { Eat } from './Eat';
+import config from '../../config.js'
 
 
 
@@ -24,7 +25,7 @@ export class Main extends React.Component {
   }
 
   handlePress() {
-  fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyCB8uBv6Wn76vcukvY_S2vOzvdGuw92JvM`, { method: 'GET',
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=${config.GEO_KEY}`, { method: 'GET',
       headers: {
         'Accept': 'application/json',
       }

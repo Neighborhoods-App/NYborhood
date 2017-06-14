@@ -20,7 +20,7 @@ export class Play extends React.Component {
       .then(data => data.results)
       .then(results => {
         return Promise.all(results.map(item => {
-          return fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${item.place_id}&key=${config.PLACES_KEY}`)
+          return m sfetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${item.place_id}&key=${config.PLACES_KEY}`)
         }))
       })
       .then(fetchArray => Promise.all(fetchArray.map(response => response.json())))
@@ -58,3 +58,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 });
+
+//WORKING ON NAV==============================
